@@ -1,0 +1,78 @@
+body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    background-color: #f4f4f4;
+}
+.container {
+    max-width: 1080px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 80px;
+   
+}
+h1{
+    color: #333;
+}
+h2{
+    color: #333;
+}
+h3{
+    color: #333;
+}
+.header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 80px;
+}
+.header h1 {
+    margin: 0;
+}
+.header p {
+    margin: 15px ;
+    
+}
+.Introduction {
+    margin-bottom: 20px;
+}
+.Experience{
+    margin-bottom: 20px;
+}
+.Skills{
+    margin-bottom: 20px;
+}
+.Introduction h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.Experience h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.Skills h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.Introduction h3 {
+    margin: 10px 0 5px;
+}
+.Experience h3 {
+    margin: 10px 0 5px;
+}
+.Skills h3 {
+    margin: 10px 0 5px;
+}
+.Introduction p {
+    margin: 5px 0;
+}
+.Experience p {
+    margin: 5px 0;
+}
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+}
