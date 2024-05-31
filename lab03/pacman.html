@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1D Pacman Game</title>
+</head>
+<body>
+    <script>
+        let score = 0;
+
+        function createGame(n) {
+            // Initialize an array with n elements filled with pellets (".")
+            let game = new Array(n).fill(".");
+
+            // Randomly place Pacman ("C"), Ghost ("^"), and Fruit ("@")
+            let pacmanPos = Math.floor(Math.random() * n);
+            game[pacmanPos] = "C";
+
+            let ghostPos;
+            do {
+                ghostPos = Math.floor(Math.random() * n);
+            } while (ghostPos === pacmanPos);
+            game[ghostPos] = "^";
+
+            let fruitPos;
+            do {
+                fruitPos = Math.floor(Math.random() * n);
+            } while (fruitPos === pacmanPos || fruitPos === ghostPos);
+            game[fruitPos] = "@";
+
+            return game;
+        }
+
+        function moveLeft(game) {
+            let pacmanIndex = game.indexOf("C");
+            if (pacmanIndex > 0) {
+                game[pacmanIndex] = ""; // Leave an empty space
+                pacmanIndex--;
+                if (game[pacmanIndex] === ".") {
+                    score++;
+                }
+                game[pacmanIndex] = "C"; // Move Pacman left
+            }
+            return game;
+        }
+
+        function moveRight(game) {
+            let pacmanIndex = game.indexOf("C");
+            if (pacmanIndex < game.length - 1) {
+                game[pacmanIndex] = ""; // Leave an empty space
+                pacmanIndex++;
+                if (game[pacmanIndex] === ".") {
+                    score++;
+                }
+                game[pacmanIndex] = "C"; // Move Pacman right
+            }
+            return game;
+        }
+
+        function checkLevelCompletion(game) {
+            return game.every(tile => tile !== ".");
+        }
+
+        function resetGame(n) {
+            return createGame(n);
+        }
+
+        function moveGhost(game) {
+            let ghostIndex = game.indexOf("^");
+            if (ghostIndex === -1) return game; // No ghost found
+
+            let directions = [-1, 1]; // Move left or right
+            let move = directions[Math.floor(Math.random() * directions.length)];
+            let newGhostIndex = ghostIndex + move;
+
+            // Ensure new position is within bounds and not occupied by Pacman
+            if (newGhostIndex >= 0 && newGhostIndex < game.length && game[newGhostIndex] !== "C") {
+                game[ghostIndex] = "."; // Leave a pellet behind
+                game[newGhostIndex] = "^"; // Move Ghost
+            }
+            return game;
+        }
+
+        // Initialize the game
+        let game = createGame(10);
+        console.log(game);
+
+        // Move Pacman left
+        game = moveLeft(game);
+        console.log(game);
+
+        // Move Pacman right
+        game = moveRight(game);
+        console.log(game);
+
+        // Check for level completion
+        if (checkLevelCompletion(game)) {
+            console.log("Level completed!");
+            game = resetGame(10);
+            console.log(game);
+        }
+
+        // Move Ghost every 2 seconds
+        setInterval(() => {
+            game = moveGhost(game);
+            console.log(game);
+        }, 2000);
+    </script>
+</body>
+</html>
